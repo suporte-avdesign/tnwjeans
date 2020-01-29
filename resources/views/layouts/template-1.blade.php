@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('font-awesome/css/font-awesome.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{asset('css/magnific-popup.min.css')}}" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/skins/orange.css" />
+    <link rel="stylesheet" type="text/css" href="css/skins/{{$home->color}}.css" />
 
     <!-- Revolution Slider CSS Files -->
     <link rel="stylesheet" type="text/css" href="js/plugins/revolution/css/settings.css" />

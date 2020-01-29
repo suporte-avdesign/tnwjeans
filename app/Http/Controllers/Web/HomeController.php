@@ -10,15 +10,22 @@ use App\Http\Controllers\Controller;
 class HomeController extends Controller
 {
     private $view = 'home';
+    private $home;
     private $content;
     /**
      * @var Home
      */
-    private $home;
 
-    public function __construct(Home $home)
+    public function __construct()
     {
-        $this->home = $home;
+        $this->home = array(
+            'color' => 'orange', #blue,blueviolet,goldenrod,green,magenta,orange,purple,red,yellow,yellowgreen
+            'color_style' => 'light', #dark,light
+            'layout_style' => 'wide', #wide, boxed
+            'separator_style' => 'normal', #normal, skew, reversed-skew, double-diagonal, big-triangle
+
+            'mainslider' => 'classicslider1', #classicslider1,
+        );
         $this->content = array(
             'title' => 'TNW JEANS'
         );
@@ -31,8 +38,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $home = typeJson($this->home);
         $content = typeJson($this->content);
-        return view("{$this->view}.home-1", compact('content'));
+        return view("{$this->view}.home-1", compact('home','content'));
     }
 
     /**
