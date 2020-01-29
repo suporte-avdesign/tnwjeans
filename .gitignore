@@ -1,5 +1,9 @@
 /node_modules
-/public
+/public/css
+/pubilc/js
+/public/img
+/public/bootstrap
+/public/font-awesome
 /public/hot
 /public/storage
 /storage/*.key
