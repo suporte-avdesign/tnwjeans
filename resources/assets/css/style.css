@@ -2297,6 +2297,11 @@ body.dark .header.header-fixed .logo a img.logo-dark {
 .team .container {
     padding: 70px 0 100px;
 }
+
+.team-products {
+    margin-top: 20px;
+}
+
 .team-members {
     margin-top: 40px;
 }
@@ -2343,9 +2348,22 @@ body.dark .header.header-fixed .logo a img.logo-dark {
     font-weight: 700;
 }
 .team-member-caption p {
-    padding: 0px 0 18px;
-    font-style: italic;
+    /*padding: 0px 0 18px;
+    font-style: italic;*/
     margin: 0;
+}
+.team-grid ul li {
+    background: transparent;
+    display: block;
+    width: 33px;
+    height: 63px;
+    line-height: 59px;
+    border-radius: 50%;
+    -webkit-transition: 0.8s;
+    transition: 0.8s;
+    text-align: center;
+    text-decoration: none;
+    color: #3c3836 !important;
 }
 .team-member-caption .list {
     position: absolute;

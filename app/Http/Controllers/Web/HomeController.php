@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Web;
 use App\Models\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\ApiService;
 use App\Interfaces\SocialNetworkInterface as InterSocial;
 use App\Interfaces\ConfigSiteInterface as ConfigSite;
 
@@ -16,12 +17,15 @@ class HomeController extends Controller
     private $content;
     private $configSite;
     private $interSocial;
+    private $apiService;
     /**
      * @var Home
      */
 
     public function __construct(
-        InterSocial $interSocial, ConfigSite $configSite)
+        ConfigSite $configSite,
+        ApiService $apiService,
+        InterSocial $interSocial)
     {
         $this->content = array(
             'title' => 'TNW JEANS - FABRICA E COMERCIO DE JEANS',
@@ -29,6 +33,7 @@ class HomeController extends Controller
         );
 
         $this->configSite = $configSite;
+        $this->apiService = $apiService;
         $this->interSocial = $interSocial;
     }
 
@@ -39,21 +44,25 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //dd(ipLocation());
+
+        $products = $this->getProducts();
         $socials = $this->interSocial->get();
         $configSite = $this->configSite->setId(1);
         $content = typeJson($this->content);
-        return view("{$this->view}.home-1", compact('configSite', 'socials', 'content'));
+        return view("{$this->view}.home-1", compact('configSite', 'socials', 'content', 'products'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Retorna os produtos da api
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function getProducts()
     {
-        //
+        $url = 'https://api.meuvesti.com/api/appcompras/catalogues?scheme_url=tnw&perpage=30&page=1&v=1.2';
+        $response = $this->apiService->getUrl($url);
+
+        return $response->response->data;
     }
 
     /**

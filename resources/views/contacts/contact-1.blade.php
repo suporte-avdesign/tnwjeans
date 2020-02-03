@@ -1,6 +1,6 @@
 
 
-<section id="contact" class="contact">
+<section id="contact2" class="contact">
     <!-- Container Starts -->
     <div class="container">
         <!-- Main Heading Starts -->
@@ -49,7 +49,7 @@
     </div>
 </section>
 
-<section class="contactform">
+<section id="contact" class="contactform">
     <div class="section-overlay">
         <div class="container">
             <div class="text-center top-text">

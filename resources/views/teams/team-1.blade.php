@@ -10,95 +10,34 @@
             <span class="outer-line"></span>
         </div>
         <div class="row team-members magnific-popup-gallery">
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="team-member">
-                    <a title="Nome do Produto" href="{{asset('img/products/product-1.jpg')}}" data-gal="magnific-pop-up[team]" class="team-member-img-wrap">
-                        <img src="{{asset('img/products/product-1.jpg')}}" alt="Nome do Produto">
-                    </a>
-                    <div class="team-member-caption social-icons">
-                        <h4>Nome do Produto</h4>
-                        <p>Categoria</p>
-                        <ul class="list list-inline social" style="display: block">
-                            <li>
-                                <a href="javascript:void(0);" onclick="socialShare(3, 'product-1.jpg');" title="Compartilhar" class="fa fa-facebook"></a>
-                            </li>
-                            <li>
-                                <a href="#" title="COMPRAR" class="fa fa-cart-plus"></a>
-                            </li>
-                            <li>
-                                <a href="#" title="Whatsapp" class="fa fa-whatsapp"></a>
-                            </li>
-                        </ul>
+            @foreach($products as $product)
+                <div class="team-products col-lg-3 col-md-6 col-sm-12">
+                    <div class="team-member">
+                        @foreach($product->photos as $photo)
+                            @if($loop->index == 1)
+                                <a title="{{$product->description}}" href="{{$photo->url.$photo->orig}}" data-gal="magnific-pop-up[team]" class="team-member-img-wrap">
+                                    <img src="{{$photo->url.$photo->large}}" alt="{{$product->name}}" height="400px">
+                                </a>
+                            @endif
+                        @endforeach
+                        <div class="team-member-caption social-icons">
+                            <h4>{{$product->name}}</h4>
+                            <p>Grade: <strong>{{str_replace(',', '/', $product->size_group_name)}}</strong></p>
+                            <ul class="list list-inline social" style="display: block">
+                                <li>
+                                    <a href="javascript:void(0);" onclick="socialShare(3, 'product-1.jpg');" title="Compartilhar" class="fa fa-facebook"></a>
+                                </li>
+                                <li>
+                                    <a href="#" title="COMPRAR" class="fa fa-cart-plus"></a>
+                                </li>
+                                <li>
+                                    <a href="#" title="Whatsapp" class="fa fa-whatsapp"></a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="team-member">
-                    <a title="Nome do Produto" href="{{asset('img/products/product-2.jpg')}}" data-gal="magnific-pop-up[team]" class="team-member-img-wrap">
-                        <img src="{{asset('img/products/product-2.jpg')}}" alt="Nome do Produto">
-                    </a>
-                    <div class="team-member-caption social-icons">
-                        <h4>Nome do Produto</h4>
-                        <p>Categoria</p>
-                        <ul class="list list-inline social">
-                            <li>
-                                <a href="#" title="Compartilhar" class="fa fa-facebook"></a>
-                            </li>
-                            <li>
-                                <a href="#" title="COMPRAR" class="fa fa-cart-plus"></a>
-                            </li>
-                            <li>
-                                <a href="#" title="Whatsapp" class="fa fa-whatsapp"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="team-member">
-                    <a title="Nome do Produto" href="{{asset('img/products/product-3.jpg')}}" data-gal="magnific-pop-up[team]" class="team-member-img-wrap">
-                        <img src="{{asset('img/products/product-3.jpg')}}" alt="Nome do Produto">
-                    </a>
-                    <div class="team-member-caption social-icons">
-                        <h4>Nome do Produto</h4>
-                        <p>Categoria</p>
-                        <ul class="list list-inline social">
-                            <li>
-                                <a href="#" title="Compartilhar" class="fa fa-facebook"></a>
-                            </li>
-                            <li>
-                                <a href="#" title="COMPRAR" class="fa fa-cart-plus"></a>
-                            </li>
-                            <li>
-                                <a href="#" title="Whatsapp" class="fa fa-whatsapp"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="team-member">
-                    <a title="Nome do Produto" href="{{asset('img/products/product-4.jpg')}}" data-gal="magnific-pop-up[team]" class="team-member-img-wrap">
-                        <img src="{{asset('img/products/product-4.jpg')}}" alt="Nome do Produto">
-                    </a>
-                    <div class="team-member-caption social-icons">
-                        <h4>Nome do Produto</h4>
-                        <p>Categoria</p>
-                        <ul class="list list-inline social">
-                            <li>
-                                <a href="#" title="Compartilhar" class="fa fa-facebook"></a>
-                            </li>
-                            <li>
-                                <a href="#" title="COMPRAR" class="fa fa-cart-plus"></a>
-                            </li>
-                            <li>
-                                <a href="#" title="Whatsapp" class="fa fa-whatsapp"></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
+            @endforeach
         </div>
     </div>
 </section>
