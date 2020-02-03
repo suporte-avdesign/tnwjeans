@@ -12,3 +12,12 @@
 */
 
 Route::get('/', 'Web\HomeController@index')->name('home');
+
+/*
+|--------------------------------------------------------------------------
+| Redes Sociais
+|--------------------------------------------------------------------------
+*/
+Route::post('ajax/social/follow', 'Web\SocialController@follow')->name('social-follow');
+Route::post('ajax/social/share', 'Web\SocialController@share')->name('social-share');
+Route::get('social/share/{slug}', 'Web\SocialController@detail')->name('social-detail');

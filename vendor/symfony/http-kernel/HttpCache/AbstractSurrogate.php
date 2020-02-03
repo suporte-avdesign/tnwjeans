@@ -114,7 +114,7 @@ abstract class AbstractSurrogate implements SurrogateInterface
     }
 
     /**
-     * Remove the Surrogate from the Surrogate-Control header.
+     * Remove the Surrogate from the Surrogate-Control headers.
      */
     protected function removeFromControl(Response $response)
     {

@@ -141,7 +141,7 @@ class Swift_Signers_DKIMSigner implements Swift_Signers_HeaderSigner
     private $bodyHash = '';
 
     /**
-     * Stores the signature header.
+     * Stores the signature headers.
      *
      * @var Swift_Mime_Headers_ParameterizedHeader
      */
@@ -325,7 +325,7 @@ class Swift_Signers_DKIMSigner implements Swift_Signers_HeaderSigner
     }
 
     /**
-     * Set the header canonicalization algorithm.
+     * Set the headers canonicalization algorithm.
      *
      * @param string $canon
      *

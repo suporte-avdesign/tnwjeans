@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Models\Home;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Interfaces\SocialNetworkInterface as InterSocial;
+use App\Interfaces\ConfigSiteInterface as ConfigSite;
 
 
 class HomeController extends Controller
@@ -12,23 +14,22 @@ class HomeController extends Controller
     private $view = 'home';
     private $home;
     private $content;
+    private $configSite;
+    private $interSocial;
     /**
      * @var Home
      */
 
-    public function __construct()
+    public function __construct(
+        InterSocial $interSocial, ConfigSite $configSite)
     {
-        $this->home = array(
-            'color' => 'orange', #blue,blueviolet,goldenrod,green,magenta,orange,purple,red,yellow,yellowgreen
-            'color_style' => 'light', #dark,light
-            'layout_style' => 'wide', #wide, boxed
-            'separator_style' => 'normal', #normal, skew, reversed-skew, double-diagonal, big-triangle
-
-            'mainslider' => 'classicslider1', #classicslider1,
-        );
         $this->content = array(
-            'title' => 'TNW JEANS'
+            'title' => 'TNW JEANS - FABRICA E COMERCIO DE JEANS',
+            'copyright' => 'Copyright©2008-'.date('Y').', TNW JEANS. todos os direitos reservados. Projetado por',
         );
+
+        $this->configSite = $configSite;
+        $this->interSocial = $interSocial;
     }
 
     /**
@@ -38,9 +39,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $home = typeJson($this->home);
+        //dd(ipLocation());
+        $socials = $this->interSocial->get();
+        $configSite = $this->configSite->setId(1);
         $content = typeJson($this->content);
-        return view("{$this->view}.home-1", compact('home','content'));
+        return view("{$this->view}.home-1", compact('configSite', 'socials', 'content'));
     }
 
     /**

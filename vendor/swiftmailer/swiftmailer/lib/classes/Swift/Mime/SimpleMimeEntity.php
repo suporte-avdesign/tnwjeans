@@ -193,7 +193,7 @@ class Swift_Mime_SimpleMimeEntity implements Swift_Mime_CharsetObserver, Swift_M
     /**
      * Get the CID of this entity.
      *
-     * The CID will only be present in headers if a Content-ID header is present.
+     * The CID will only be present in headers if a Content-ID headers is present.
      *
      * @return string
      */
@@ -224,7 +224,7 @@ class Swift_Mime_SimpleMimeEntity implements Swift_Mime_CharsetObserver, Swift_M
     /**
      * Get the description of this entity.
      *
-     * This value comes from the Content-Description header if set.
+     * This value comes from the Content-Description headers if set.
      *
      * @return string
      */
@@ -236,7 +236,7 @@ class Swift_Mime_SimpleMimeEntity implements Swift_Mime_CharsetObserver, Swift_M
     /**
      * Set the description of this entity.
      *
-     * This method sets a value in the Content-ID header.
+     * This method sets a value in the Content-ID headers.
      *
      * @param string $description
      *
@@ -574,7 +574,7 @@ class Swift_Mime_SimpleMimeEntity implements Swift_Mime_CharsetObserver, Swift_M
     }
 
     /**
-     * Get the name of the header that provides the ID of this entity.
+     * Get the name of the headers that provides the ID of this entity.
      */
     protected function getIdField()
     {
@@ -606,7 +606,7 @@ class Swift_Mime_SimpleMimeEntity implements Swift_Mime_CharsetObserver, Swift_M
     }
 
     /**
-     * Get the parameter value of $parameter on $field header.
+     * Get the parameter value of $parameter on $field headers.
      */
     protected function getHeaderParameter($field, $parameter)
     {
@@ -616,7 +616,7 @@ class Swift_Mime_SimpleMimeEntity implements Swift_Mime_CharsetObserver, Swift_M
     }
 
     /**
-     * Set the parameter value of $parameter on $field header.
+     * Set the parameter value of $parameter on $field headers.
      */
     protected function setHeaderParameter($field, $parameter, $value)
     {

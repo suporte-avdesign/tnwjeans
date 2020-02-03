@@ -1842,8 +1842,8 @@ body.dark .header.header-fixed .logo a img.logo-dark {
     border-radius: 0;
     font-size: 15px;
     color: #777;
-    padding: 0 30px;
-    margin: 15px 0 25px;
+    padding: 0 10px;
+    margin: 10px 0 25px;
     text-transform: uppercase;
     display:block;
 }
@@ -1982,6 +1982,7 @@ body.dark .header.header-fixed .logo a img.logo-dark {
     top: 0;
     right: 0;
     bottom: 0;
+    height: 100%;
     left: 0;
     margin: 0px 15px;
     box-shadow: 0px 0px 3px 1px #ddd;
@@ -2036,6 +2037,16 @@ body.dark .header.header-fixed .logo a img.logo-dark {
     position: relative;
     margin: 12px 0;
     font-size: 13px;
+}
+.services .services-box-item-content img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 7px;
+}
+.services .services-box-item-content a {
+    font-size: 18px;
+    text-align: center;
 }
 .services[data-icon]:before,
 .services[class^="icon-"]:before,
@@ -2414,7 +2425,7 @@ body.dark .header.header-fixed .logo a img.logo-dark {
 }
 .fact-badges h2 span {
     font-weight: bold;
-    font-size: 48px;
+    font-size: 20px;
 }
 .fact-badges h2 strong {
     font-weight: 800;
@@ -2422,6 +2433,9 @@ body.dark .header.header-fixed .logo a img.logo-dark {
 }
 .fact-badges .fa {
     font-size: 90px;
+    color: #fff;
+}
+.fact-badges p, .fact-badges p a {
     color: #fff;
 }
 .facts .top-text h4 {
@@ -2946,7 +2960,7 @@ body.blog-page article .comments-form .custom-button:before {
 
 .videopromotion {
     color: #fff;
-    background: url("../img/sections/video-bg.jpg");
+    background: url("../img/sections/making-of.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -3291,6 +3305,11 @@ body.dark.blog-page .banner-blog-post .meta {
     text-align: center;
 }
 
+.social-icons ul li a[title="whatsapp"]:before {
+    content: "\f232";
+}
+
+
 .social-icons ul li a[title="facebook"]:before {
     content: "\f09a";
 }
@@ -3523,7 +3542,7 @@ body.dark.blog-page .banner-blog-post .meta {
 .footer p {
     color: #fff;
     padding-bottom: 10px;
-    text-transform: lowercase;
+    /*text-transform: lowercase;*/
 }
 .footer .container p:first-child {
     font-weight: 500;

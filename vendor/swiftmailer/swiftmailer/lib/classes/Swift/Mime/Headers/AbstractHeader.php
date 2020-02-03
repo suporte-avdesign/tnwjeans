@@ -32,7 +32,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
     private $encoder;
 
     /**
-     * The maximum length of a line in the header.
+     * The maximum length of a line in the headers.
      *
      * @var int
      */
@@ -108,7 +108,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
     }
 
     /**
-     * Set the encoder used for encoding the header.
+     * Set the encoder used for encoding the headers.
      */
     public function setEncoder(Swift_Mime_HeaderEncoder $encoder)
     {
@@ -127,7 +127,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
     }
 
     /**
-     * Get the name of this header (e.g. charset).
+     * Get the name of this headers (e.g. charset).
      *
      * @return string
      */
@@ -137,7 +137,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
     }
 
     /**
-     * Set the maximum length of lines in the header (excluding EOL).
+     * Set the maximum length of lines in the headers (excluding EOL).
      *
      * @param int $lineLength
      */
@@ -196,7 +196,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
      *
      * @param string $string  as displayed
      * @param string $charset of the text
-     * @param bool   $shorten the first line to make remove for header name
+     * @param bool   $shorten the first line to make remove for headers name
      *
      * @return string
      */
@@ -414,7 +414,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
     }
 
     /**
-     * Generate a list of all tokens in the final header.
+     * Generate a list of all tokens in the final headers.
      *
      * @param string $string The string to tokenize
      *
@@ -440,7 +440,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
     }
 
     /**
-     * Takes an array of tokens which appear in the header and turns them into
+     * Takes an array of tokens which appear in the headers and turns them into
      * an RFC 2822 compliant string, adding FWSP where needed.
      *
      * @param string[] $tokens
@@ -454,7 +454,7 @@ abstract class Swift_Mime_Headers_AbstractHeader implements Swift_Mime_Header
         $headerLines[] = $this->name.': ';
         $currentLine = &$headerLines[$lineCount++];
 
-        // Build all tokens back into compliant header
+        // Build all tokens back into compliant headers
         foreach ($tokens as $i => $token) {
             // Line longer than specified maximum or token was just a new line
             if (("\r\n" == $token) ||

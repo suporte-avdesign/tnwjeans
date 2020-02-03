@@ -39,7 +39,7 @@ final class FormDataPart extends AbstractMultipartPart
 
             $this->fields[$name] = $value;
         }
-        // HTTP does not support \r\n in header values
+        // HTTP does not support \r\n in headers values
         $this->getHeaders()->setMaxLineLength(PHP_INT_MAX);
     }
 
@@ -94,7 +94,7 @@ final class FormDataPart extends AbstractMultipartPart
 
         $part->setDisposition('form-data');
         $part->setName($name);
-        // HTTP does not support \r\n in header values
+        // HTTP does not support \r\n in headers values
         $part->getHeaders()->setMaxLineLength(PHP_INT_MAX);
         $r->setValue($part, '8bit');
 

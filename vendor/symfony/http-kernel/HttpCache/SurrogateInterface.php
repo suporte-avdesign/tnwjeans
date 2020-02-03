@@ -45,7 +45,7 @@ interface SurrogateInterface
     /**
      * Adds HTTP headers to specify that the Response needs to be parsed for Surrogate.
      *
-     * This method only adds an Surrogate HTTP header if the Response has some Surrogate tags.
+     * This method only adds an Surrogate HTTP headers if the Response has some Surrogate tags.
      */
     public function addSurrogateControl(Response $response);
 

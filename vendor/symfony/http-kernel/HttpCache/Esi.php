@@ -109,7 +109,7 @@ class Esi extends AbstractSurrogate
         $response->setContent($content);
         $response->headers->set('X-Body-Eval', 'ESI');
 
-        // remove ESI/1.0 from the Surrogate-Control header
+        // remove ESI/1.0 from the Surrogate-Control headers
         $this->removeFromControl($response);
 
         return $response;

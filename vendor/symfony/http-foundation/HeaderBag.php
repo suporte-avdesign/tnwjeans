@@ -101,12 +101,12 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Returns a header value by name.
+     * Returns a headers value by name.
      *
-     * @param string      $key     The header name
+     * @param string      $key     The headers name
      * @param string|null $default The default value
      *
-     * @return string|null The first header value or default value
+     * @return string|null The first headers value or default value
      */
     public function get($key, $default = null)
     {
@@ -131,7 +131,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Sets a header by name.
+     * Sets a headers by name.
      *
      * @param string          $key     The key
      * @param string|string[] $values  The value or an array of values
@@ -163,9 +163,9 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Returns true if the HTTP header is defined.
+     * Returns true if the HTTP headers is defined.
      *
-     * @param string $key The HTTP header
+     * @param string $key The HTTP headers
      *
      * @return bool true if the parameter exists, false otherwise
      */
@@ -175,12 +175,12 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Returns true if the given HTTP header contains the given value.
+     * Returns true if the given HTTP headers contains the given value.
      *
-     * @param string $key   The HTTP header name
+     * @param string $key   The HTTP headers name
      * @param string $value The HTTP value
      *
-     * @return bool true if the value is contained in the header, false otherwise
+     * @return bool true if the value is contained in the headers, false otherwise
      */
     public function contains($key, $value)
     {
@@ -188,9 +188,9 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Removes a header.
+     * Removes a headers.
      *
-     * @param string $key The HTTP header name
+     * @param string $key The HTTP headers name
      */
     public function remove($key)
     {
@@ -204,13 +204,13 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Returns the HTTP header value converted to a date.
+     * Returns the HTTP headers value converted to a date.
      *
      * @param string $key The parameter key
      *
-     * @return \DateTimeInterface|null The parsed DateTime or the default value if the header does not exist
+     * @return \DateTimeInterface|null The parsed DateTime or the default value if the headers does not exist
      *
-     * @throws \RuntimeException When the HTTP header is not parseable
+     * @throws \RuntimeException When the HTTP headers is not parseable
      */
     public function getDate($key, \DateTime $default = null)
     {
@@ -219,7 +219,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
         }
 
         if (false === $date = \DateTime::createFromFormat(DATE_RFC2822, $value)) {
-            throw new \RuntimeException(sprintf('The %s HTTP header is not parseable (%s).', $key, $value));
+            throw new \RuntimeException(sprintf('The %s HTTP headers is not parseable (%s).', $key, $value));
         }
 
         return $date;
@@ -302,9 +302,9 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Parses a Cache-Control HTTP header.
+     * Parses a Cache-Control HTTP headers.
      *
-     * @param string $header The value of the Cache-Control HTTP header
+     * @param string $header The value of the Cache-Control HTTP headers
      *
      * @return array An array representing the attribute values
      */

@@ -427,7 +427,7 @@ final class PhptTestCase implements SelfDescribing, Test
             }
 
             if (empty($section)) {
-                throw new Exception('Invalid PHPT file: empty section header');
+                throw new Exception('Invalid PHPT file: empty section headers');
             }
 
             $sections[$section] .= $line;

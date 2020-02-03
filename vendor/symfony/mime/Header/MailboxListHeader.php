@@ -125,7 +125,7 @@ final class MailboxListHeader extends AbstractHeader
     /**
      * Redefine the encoding requirements for addresses.
      *
-     * All "specials" must be encoded as the full header value will not be quoted
+     * All "specials" must be encoded as the full headers value will not be quoted
      *
      * @see RFC 2822 3.2.1
      */

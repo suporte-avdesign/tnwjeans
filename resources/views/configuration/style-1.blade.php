@@ -36,8 +36,8 @@
 
         <p>COR CORPO</p>
 
-        <label><input class="dark_switch" type="radio" name="color_style" id="is_light" value="light" @if($home->color_style == 'light') checked="checked" @endif /> Claro</label>
-        <label><input class="dark_switch" type="radio" name="color_style" id="is_dark" value="dark" @if($home->color_style == 'dark') checked="checked" @endif /> Escuro</label>
+        <label><input class="dark_switch" type="radio" name="color_style" id="is_light" value="light" @if($configSite->color_style == 'light') checked="checked" @endif /> Claro</label>
+        <label><input class="dark_switch" type="radio" name="color_style" id="is_dark" value="dark" @if($configSite->color_style == 'dark') checked="checked" @endif /> Escuro</label>
 
         <hr />
 
@@ -47,18 +47,31 @@
 
         <hr />
 
-        <p class="separator">SEPARATOR <span class="hot">HOT</span></p>
-        <span class="info">Select and scroll to see the changes</span>
-        <label><input class="separator_switch" type="radio" name="separator_style" id="is_normal" value="normal"  /> <img alt="separator" width="20" height="20" src="img/styleswitcher/separators/1.jpg" /></label>
-        <label><input class="separator_switch" type="radio" name="separator_style" id="is_skew" value="skew" /> <img alt="separator" width="20" height="20" src="img/styleswitcher/separators/2.jpg" /></label>
-        <label><input class="separator_switch" type="radio" name="separator_style" id="is_reversed_skew" value="reversed-skew" /> <img alt="separator" width="20" height="20" src="img/styleswitcher/separators/3.jpg" /></label>
-        <label><input class="separator_switch" type="radio" name="separator_style" id="is_double_diagonal" value="double-diagonal" /> <img alt="separator" width="20" height="20" src="img/styleswitcher/separators/4.jpg" /></label>
-        <label><input class="separator_switch" type="radio" name="separator_style" id="is_big_triangle" value="big-triangle" checked="checked" /> <img alt="separator" width="20" height="20" src="img/styleswitcher/separators/5.jpg" /></label>
+        <p class="separator">SEPARADOR</p>
+        <span class="info">Selecione e role para ver as alterações</span>
+        <label>
+            <input class="separator_switch" type="radio" name="separator_style" id="is_normal" value="normal"  />
+            <img alt="separator" width="20" height="20" src="img/styleswitcher/separators/1.jpg" />
+        </label>
+        <label>
+            <input class="separator_switch" type="radio" name="separator_style" id="is_skew" value="skew" />
+            <img alt="separator" width="20" height="20" src="img/styleswitcher/separators/2.jpg" />
+        </label>
+        <label>
+            <input class="separator_switch" type="radio" name="separator_style" id="is_reversed_skew" value="reversed-skew" />
+            <img alt="separator" width="20" height="20" src="img/styleswitcher/separators/3.jpg" />
+        </label>
+        <label>
+            <input class="separator_switch" type="radio" name="separator_style" id="is_double_diagonal" value="double-diagonal" />
+            <img alt="separator" width="20" height="20" src="img/styleswitcher/separators/4.jpg" />
+        </label>
+        <label>
+            <input class="separator_switch" type="radio" name="separator_style" id="is_big_triangle" value="big-triangle" checked="checked" />
+            <img alt="separator" width="20" height="20" src="img/styleswitcher/separators/5.jpg" />
+        </label>
 
         <hr />
 
-        <a href="https://themeforest.net/item/salimo-creative-one-page-template/19128817?ref=celtano" class="custom-button purchase">Purchase</a>
-        <div id="hideSwitcher">&times;</div>
 
     </div>
 </div>

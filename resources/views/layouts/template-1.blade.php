@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     @stack('title')
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
@@ -13,67 +13,68 @@
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}">
 
     <!-- Template CSS Files -->
-    <link rel="stylesheet" type="text/css" href="{{asset('bootstrap/css/bootstrap.min.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('font-awesome/css/font-awesome.min.css')}}" />
-    <link rel="stylesheet" type="text/css" href="{{asset('css/magnific-popup.min.css')}}" />
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/skins/{{$home->color}}.css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.min.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome.min.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/magnific-popup.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/skins/'.$configSite->color.'.css')}}" />
 
     <!-- Revolution Slider CSS Files -->
-    <link rel="stylesheet" type="text/css" href="js/plugins/revolution/css/settings.css" />
-    <link rel="stylesheet" type="text/css" href="js/plugins/revolution/css/layers.css" />
-    <link rel="stylesheet" type="text/css" href="js/plugins/revolution/css/navigation.css" />
+    <link rel="stylesheet" type="text/css" href="{{asset('js/plugins/revolution/css/settings.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('js/plugins/revolution/css/layers.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('js/plugins/revolution/css/navigation.css')}}" />
 
     <!-- Live Style Switcher - demo only -->
-    <link rel="alternate stylesheet" type="text/css" title="blue" href="css/skins/blue.css" />
-    <link rel="alternate stylesheet" type="text/css" title="blueviolet" href="css/skins/blueviolet.css" />
-    <link rel="alternate stylesheet" type="text/css" title="goldenrod" href="css/skins/goldenrod.css" />
-    <link rel="alternate stylesheet" type="text/css" title="green" href="css/skins/green.css" />
-    <link rel="alternate stylesheet" type="text/css" title="magenta" href="css/skins/magenta.css" />
-    <link rel="alternate stylesheet" type="text/css" title="orange" href="css/skins/orange.css" />
-    <link rel="alternate stylesheet" type="text/css" title="purple" href="css/skins/purple.css" />
-    <link rel="alternate stylesheet" type="text/css" title="red" href="css/skins/red.css" />
-    <link rel="alternate stylesheet" type="text/css" title="yellow" href="css/skins/yellow.css" />
-    <link rel="alternate stylesheet" type="text/css" title="yellowgreen" href="css/skins/yellowgreen.css" />
-    <link rel="stylesheet" type="text/css" href="css/styleswitcher.css" />
+    <link rel="alternate stylesheet" type="text/css" title="blue" href="{{asset('css/skins/blue.css')}}" />
+    <link rel="alternate stylesheet" type="text/css" title="blueviolet" href="{{asset('css/skins/blueviolet.css')}}" />
+    <link rel="alternate stylesheet" type="text/css" title="goldenrod" href="{{asset('css/skins/goldenrod.css')}}" />
+    <link rel="alternate stylesheet" type="text/css" title="green" href="{{asset('css/skins/green.css')}}" />
+    <link rel="alternate stylesheet" type="text/css" title="magenta" href="{{asset('css/skins/magenta.css')}}" />
+    <link rel="alternate stylesheet" type="text/css" title="orange" href="{{asset('css/skins/orange.css')}}" />
+    <link rel="alternate stylesheet" type="text/css" title="purple" href="{{asset('css/skins/purple.css')}}" />
+    <link rel="alternate stylesheet" type="text/css" title="red" href="{{asset('css/skins/red.css')}}" />
+    <link rel="alternate stylesheet" type="text/css" title="yellow" href="{{asset('css/skins/yellow.css')}}" />
+    <link rel="alternate stylesheet" type="text/css" title="yellowgreen" href="{{asset('css/skins/yellowgreen.css')}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/styleswitcher.css')}}" />
 
     <!-- Template JS Files -->
-    <script type="text/javascript" src="js/modernizr.js"></script>
+    <script type="text/javascript" src="{{asset('js/modernizr.js')}}"></script>
 
 </head>
 @stack('body')
 @yield('content')
 <!-- Template JS Files -->
-<script type="text/javascript" src="js/jquery-2.2.4.min.js"></script>
-<script type="text/javascript" src="js/plugins/jquery.easing.1.3.js"></script>
+<script type="text/javascript" src="{{asset('js/jquery-2.2.4.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/jquery.easing.1.3.js')}}"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyAFnEvJfyoQ8unR5hK1u87h73EdYP46-hE"></script>
-<script type="text/javascript" src="js/plugins/bootstrap.bundle.min.js"></script>
-<script type="text/javascript" src="js/plugins/jquery.bxslider.min.js"></script>
-<script type="text/javascript" src="js/plugins/jquery.filterizr.js"></script>
-<script type="text/javascript" src="js/plugins/jquery.magnific-popup.min.js"></script>
-<script type="text/javascript" src="js/plugins/jquery.singlePageNav.min.js"></script>
+<script type="text/javascript" src="{{asset('js/plugins/bootstrap.bundle.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/jquery.bxslider.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/jquery.filterizr.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/jquery.magnific-popup.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/jquery.singlePageNav.min.js')}}"></script>
 
 <!-- Revolution Slider Main JS Files -->
-<script type="text/javascript" src="js/plugins/revolution/js/jquery.themepunch.tools.min.js"></script>
-<script type="text/javascript" src="js/plugins/revolution/js/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript" src="{{asset('js/plugins/revolution/js/jquery.themepunch.tools.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/revolution/js/jquery.themepunch.revolution.min.js')}}"></script>
 
 <!-- Revolution Slider Extensions -->
 
-<script type="text/javascript" src="js/plugins/revolution/js/extensions/revolution.extension.actions.min.js"></script>
-<script type="text/javascript" src="js/plugins/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
-<script type="text/javascript" src="js/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
-<script type="text/javascript" src="js/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
-<script type="text/javascript" src="js/plugins/revolution/js/extensions/revolution.extension.migration.min.js"></script>
-<script type="text/javascript" src="js/plugins/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
-<script type="text/javascript" src="js/plugins/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
-<script type="text/javascript" src="js/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
-<script type="text/javascript" src="js/plugins/revolution/js/extensions/revolution.extension.video.min.js"></script>
+<script type="text/javascript" src="{{asset('js/plugins/revolution/js/extensions/revolution.extension.actions.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/revolution/js/extensions/revolution.extension.carousel.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/revolution/js/extensions/revolution.extension.kenburn.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/revolution/js/extensions/revolution.extension.layeranimation.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/revolution/js/extensions/revolution.extension.migration.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/revolution/js/extensions/revolution.extension.navigation.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/revolution/js/extensions/revolution.extension.parallax.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/revolution/js/extensions/revolution.extension.slideanims.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/plugins/revolution/js/extensions/revolution.extension.video.min.js')}}"></script>
 
 <!-- Live Style Switcher JS File - only demo -->
-<script type="text/javascript" src="js/styleswitcher.js"></script>
+<script type="text/javascript" src="{{asset('js/styleswitcher.js')}}"></script>
 
 <!-- Main JS Initialization File -->
-<script type="text/javascript" src="js/custom.js"></script>
+<script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/social.js')}}"></script>
 
 <!-- Revolution Slider Initialization Starts -->
 <script>
@@ -184,18 +185,18 @@
 
             var myOptions = {
                 scrollwheel: false,
-                zoom: 12,
-                center: new google.maps.LatLng(40.7127837, -74.00594130000002),
+                zoom: 18,
+                center: new google.maps.LatLng(-23.5356575, -46.6138154,),
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
             var map = new google.maps.Map(document.getElementById("gmap_canvas"), myOptions);
             var marker = new google.maps.Marker({
                 map: map,
                 icon: "img/markers/orange.png",
-                position: new google.maps.LatLng(40.7127837, -74.00594130000002)
+                position: new google.maps.LatLng(-23.5356575, -46.6138154,)
             });
             var infowindow = new google.maps.InfoWindow({
-                content: "<strong>SALIMO</strong><br>1234 Disney Street, New York City<br>"
+                content: "<strong>TNW JEANS</strong><br>Rua Xavantes, 596 - Brás -SP<br>"
             });
             google.maps.event.addListener(marker, "click", function() {
                 infowindow.open(map, marker);

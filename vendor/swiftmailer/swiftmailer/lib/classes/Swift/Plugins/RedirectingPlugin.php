@@ -119,7 +119,7 @@ class Swift_Plugins_RedirectingPlugin implements Swift_Events_SendListener
     }
 
     /**
-     * Filter header set against a whitelist of regular expressions.
+     * Filter headers set against a whitelist of regular expressions.
      *
      * @param string $type
      */

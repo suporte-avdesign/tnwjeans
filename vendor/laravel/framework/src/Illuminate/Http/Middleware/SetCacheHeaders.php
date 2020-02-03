@@ -48,7 +48,7 @@ class SetCacheHeaders
     }
 
     /**
-     * Parse the given header options.
+     * Parse the given headers options.
      *
      * @param  string  $options
      * @return array

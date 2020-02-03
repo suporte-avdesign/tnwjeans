@@ -31,7 +31,7 @@ class MoFileLoader extends FileLoader
     const MO_BIG_ENDIAN_MAGIC = 0xde120495;
 
     /**
-     * The size of the header of a MO file in bytes.
+     * The size of the headers of a MO file in bytes.
      */
     const MO_HEADER_SIZE = 28;
 

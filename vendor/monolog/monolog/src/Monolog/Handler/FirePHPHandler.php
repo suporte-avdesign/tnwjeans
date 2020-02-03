@@ -24,7 +24,7 @@ class FirePHPHandler extends AbstractProcessingHandler
     use WebRequestRecognizerTrait;
 
     /**
-     * WildFire JSON header message format
+     * WildFire JSON headers message format
      */
     protected const PROTOCOL_URI = 'http://meta.wildfirehq.org/Protocol/JsonStream/0.2';
 
@@ -57,11 +57,11 @@ class FirePHPHandler extends AbstractProcessingHandler
     protected static $sendHeaders = true;
 
     /**
-     * Base header creation function used by init headers & record headers
+     * Base headers creation function used by init headers & record headers
      *
      * @param  array  $meta    Wildfire Plugin, Protocol & Structure Indexes
      * @param  string $message Log message
-     * @return array  Complete header string ready for the client as key and message as value
+     * @return array  Complete headers string ready for the client as key and message as value
      */
     protected function createHeader(array $meta, string $message): array
     {
@@ -71,7 +71,7 @@ class FirePHPHandler extends AbstractProcessingHandler
     }
 
     /**
-     * Creates message header from record
+     * Creates message headers from record
      *
      * @see createHeader()
      */
@@ -110,7 +110,7 @@ class FirePHPHandler extends AbstractProcessingHandler
     }
 
     /**
-     * Send header string to the client
+     * Send headers string to the client
      */
     protected function sendHeader(string $header, string $content): void
     {
@@ -120,7 +120,7 @@ class FirePHPHandler extends AbstractProcessingHandler
     }
 
     /**
-     * Creates & sends header for a record, ensuring init headers have been sent prior
+     * Creates & sends headers for a record, ensuring init headers have been sent prior
      *
      * @see sendHeader()
      * @see sendInitHeaders()

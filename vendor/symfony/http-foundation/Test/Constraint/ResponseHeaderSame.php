@@ -30,7 +30,7 @@ final class ResponseHeaderSame extends Constraint
      */
     public function toString(): string
     {
-        return sprintf('has header "%s" with value "%s"', $this->headerName, $this->expectedValue);
+        return sprintf('has headers "%s" with value "%s"', $this->headerName, $this->expectedValue);
     }
 
     /**
