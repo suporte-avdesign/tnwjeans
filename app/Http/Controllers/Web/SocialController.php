@@ -3,18 +3,20 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
-
+use App\Services\ApiService;
 use App\Http\Controllers\Controller;
 use App\Interfaces\SocialFollowInterface as InterFollow;
 use App\Interfaces\SocialNetworkInterface as InterSocial;
 
 class SocialController extends Controller
 {
+    private $apiService;
     private $interFollow;
     private $interNetwork;
 
-    public function __construct(InterFollow $interFollow, InterSocial $interNetwork)
+    public function __construct(ApiService $apiService, InterFollow $interFollow, InterSocial $interNetwork)
     {
+        $this->apiService = $apiService;
         $this->interFollow = $interFollow;
         $this->interNetwork = $interNetwork;
     }
@@ -42,9 +44,9 @@ class SocialController extends Controller
     public function share(Request $request)
     {
         $input = $request->all();
-        $redirect = route('social-detail', ['slug' => $input['img']]);
-        //return response()->json(['redirect' => $redirect]);
-        return response()->json(['redirect' => 'http://www.tnwjeans.com.br/debora-seco-2017']);
+        $redirect = route('social-detail', ['id' => $input['id']]);
+        return response()->json(['redirect' => $redirect]);
+        //return response()->json(['redirect' => 'https://appwebcatalogo.vesti.mobi/catalogo/tnw/98613bcf-3bf3-40ae-a6ec-493cee27651b']);
     }
 
     /**
@@ -53,9 +55,16 @@ class SocialController extends Controller
      * @param  $slug
      * @return \Illuminate\Http\Response
      */
-    public function detail($slug)
+    public function detail($id)
     {
-        return view('details.detail-1', compact('slug'));
+        $url = "https://api.meuvesti.com/api/appcompras/products/{$id}?scheme_url=tnw&v=1.1";
+        $response = $this->apiService->getUrl($url);
+        $product = $response->response;
+        if ($response->result->success == true) {
+
+            return view('details.detail-1', compact('product'));
+        }
+
     }
 
     /**

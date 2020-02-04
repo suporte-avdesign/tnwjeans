@@ -41,10 +41,10 @@
         });
     }
 
-    socialShare = function (id, img) {
+    socialShare = function (id, idpro) {
         $.get("https://ipinfo.io?token=11df3951a4c876", function(response) {
             var data = {
-                img: img,
+                id: idpro,
                 ip: response.ip,
                 local: response.loc,
                 city: response.city,
@@ -72,11 +72,27 @@
 
             success: function (data) {
                 if (data.redirect) {
+
+                    window.open(data.redirect);
+
+                    /*
                     window.open('https://www.facebook.com/sharer/sharer.php?u='+
                         encodeURIComponent(data.redirect),
-                        'facebook-share-dialog','width=626,height=600');
+                        'facebook-share-dialog','width=626,height=400');
+                    */
                 }
+
+
             }
+        });
+    }
+
+    changeMetaContent = function(metaName, newMetaContent) {
+        $("meta").each(function() {
+
+            if($(this).attr("name") == metaName) {
+                $(this).attr("content" , newMetaContent);
+            };
         });
     }
 

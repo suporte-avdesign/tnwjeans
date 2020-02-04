@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Home;
+use App\Services\ApiService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Services\ApiService;
 use App\Interfaces\SocialNetworkInterface as InterSocial;
 use App\Interfaces\ConfigSiteInterface as ConfigSite;
 
@@ -71,9 +71,12 @@ class HomeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function postDetails($id)
     {
-        //
+        $url = "https://api.meuvesti.com/api/appcompras/products/{$id}?scheme_url=tnw&v=1.1";
+        $response = $this->apiService->getUrl($url);
+
+        dd($response);
     }
 
     /**

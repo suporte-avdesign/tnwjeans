@@ -25,7 +25,7 @@
                             <p>Grade: <strong>{{str_replace(',', '/', $product->size_group_name)}}</strong></p>
                             <ul class="list list-inline social" style="display: block">
                                 <li>
-                                    <a href="javascript:void(0);" onclick="socialShare(3, 'product-1.jpg');" title="Compartilhar" class="fa fa-facebook"></a>
+                                    <a href="javascript:void(0);" onclick="socialShare(3, '{{$product->id}}');" title="Compartilhar" class="fa fa-facebook"></a>
                                 </li>
                                 <li>
                                     <a href="#" title="COMPRAR" class="fa fa-cart-plus"></a>
