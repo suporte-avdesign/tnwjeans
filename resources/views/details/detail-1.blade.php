@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html class="no-js" lang="en">
+<html class="no-js" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Swatches Style &ndash; Belle Multipurpose Bootstrap 4 Template</title>
-    <meta name="description" content="description">
+    <title>{{$product->name}}</title>
+    <meta name="description" content="{{$product->description}} - {{$product->composition}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:url" content="{{route('social-detail', $product->id)}}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="{{$product->name}}" />
+    <meta property="og:description" content="{{$product->description}} - {{$product->composition}}" />
+@foreach($product->images as $image)
+@if($loop->index == 0)
+    <meta property="og:image" content="{{$image->url.$image->sizes->orig->path}}" />
+@endif
+@endforeach
+
     <!-- Favicon -->
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}" />
     <!-- Plugins CSS -->
@@ -32,7 +42,7 @@
                                 <div class="product-thumb">
                                     <div id="gallery" class="product-dec-slider-2 product-tab-left">
                                         @foreach($product->images as $image)
-                                            <a data-image="{{$image->url.$image->sizes->large->path}}" data-zoom-image="{{$image->url.$image->sizes->orig->path}}" class="slick-slide slick-cloned" data-slick-index="{{$loop->index}}" aria-hidden="true" tabindex="-1">
+                                            <a data-image="{{$image->url.$image->sizes->orig->path}}" data-zoom-image="{{$image->url.$image->sizes->orig->path}}" class="slick-slide slick-cloned" data-slick-index="{{$loop->index}}" aria-hidden="true" tabindex="-1">
                                                 <img class="blur-up lazyload" data-src="{{$image->url.$image->sizes->small->path}}" src="{{$image->url.$image->sizes->small->path}}" alt="" />
                                             </a>
                                         @endforeach
@@ -42,25 +52,100 @@
                                     <div class="zoompro-span">
                                         @foreach($product->images as $image)
                                             @if($loop->index == 0)
-                                                <img class="{{$image->url.$image->sizes->orig->path}}" alt="" src="{{$image->url.$image->sizes->orig->path}}" />
+                                                <img class="blur-up lazyload zoompro" data-zoom-image="{{$image->url.$image->sizes->orig->path}}" alt="" src="{{$image->url.$image->sizes->orig->path}}" />
                                             @endif
+
                                         @endforeach
                                     </div>
                                     <div class="product-buttons">
-                                        <a href="#" class="btn prlightbox" title="Zoom">
+                                        <a href="#" class="btn prlightbox" title="Ampliar">
                                             <i class="icon anm anm-expand-l-arrows" aria-hidden="true"></i>
                                         </a>
                                     </div>
                                 </div>
                                 <div class="lightboximages">
                                     @foreach($product->images as $image)
+                                        @php $content_height = $image->sizes->orig->height+20; @endphp
                                         <a href="{{$image->url.$image->sizes->orig->path}}" data-size="{{$image->sizes->orig->width}}x{{$image->sizes->orig->height}}"></a>
                                     @endforeach
                                 </div>
 
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-12"></div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12" style="height: {{$content_height}}px">
+                            <div class="product-single__meta">
+                                <h1 class="product-single__title">{{$product->name}}</h1>
+                            </div>
+                            <div class="product-single__description rte">
+                                <ul>
+                                    <li>{{$product->description}}</li>
+                                    <li>{{$product->composition}}</li>
+                                </ul>
+                            </div>
+                            <form method="post" id="product_form_10508262282" accept-charset="UTF-8" class="product-form product-form-product-template hidedropdown" enctype="multipart/form-data">
+                                <div class="swatch clearfix swatch-0 option1" data-option-index="0">
+                                    <div class="product-form__item">
+                                        <label class="header">Fotos: <span class="slVariant">Modelo</span></label>
+                                        @foreach($product->images as $image)
+                                            <div data-value="pos_{{$loop->index+1}}" class="swatch-element color pos_{{$loop->index+1}} available">
+                                                <input class="swatchInput" id="swatch-0-pos_{{$loop->index+1}}" type="radio" name="option-0" value="pos_{{$loop->index+1}}">
+                                                <label class="swatchLbl color medium rectangle" for="swatch-0-pos_{{$loop->index+1}}" style="background-image:url({{$image->url.$image->sizes->small->path}});" title="{{$product->name}} {{$loop->index+1}}"></label>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="swatch clearfix swatch-1 option2" data-option-index="1">
+                                    <div class="product-form__item">
+                                        <label class="header"> <span class="slVariant">Grade:</span></label>
+                                        @foreach($product->packs as $packs)
+                                            @foreach($packs->pack_sizes as $size)
+                                                <div data-value="{{$size}}" class="swatch-element {{$size}} available">
+                                                    <input class="swatchInput" id="swatch-1-{{$size}}" type="radio" name="option-1" value="{{$size}}">
+                                                    <label class="swatchLbl medium rectangle" for="swatch-1-{{$size}}" title="{{$size}}">{{$size}}</label>
+                                                </div>
+                                            @endforeach
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="product-action clearfix"> </div>
+                            </form>
+                            <div id="quantity_message">COMPARTILHE COM SEU CLIENTE.</div>
+
+                            <div class="display-table shareRow">
+
+                                <div class="display-table-cell text-left">
+                                    <div class="social-sharing">
+                                        @foreach($socials as $social)
+                                            @if($social->name == 'facebook' && $social->active == 1)
+                                                <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-facebook" title="Facebook">
+                                                    <i class="fa fa-facebook-square" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Facebook</span>
+                                                </a>
+                                            @endif
+                                            @if($social->name == 'twitter' && $social->active == 1)
+                                                <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-twitter" title="Tweet on Twitter">
+                                                    <i class="fa fa-twitter" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Tweet</span>
+                                                </a>
+                                            @endif
+                                            @if($social->name == 'google' && $social->active == 1)
+                                                <a href="#" title="Share on google+" class="btn btn--small btn--secondary btn--share" >
+                                                    <i class="fa fa-google-plus" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Google</span>
+                                                </a>
+                                            @endif
+                                            @if($social->name == 'whatsapp' && $social->active == 1)
+                                                <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-whatsapp" title="Whatsapp">
+                                                    <i class="fa fa-whatsapp" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Whatsapp</span>
+                                                </a>
+                                            @endif
+                                            @if($social->name == 'instagram' && $social->active == 1)
+                                                <a href="#" class="btn btn--small btn--secondary btn--share share-instagram" title="Instagram" target="_blank">
+                                                    <i class="fa fa-instagram" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Instagram</span>
+                                                </a>
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -60,9 +60,9 @@ class SocialController extends Controller
         $url = "https://api.meuvesti.com/api/appcompras/products/{$id}?scheme_url=tnw&v=1.1";
         $response = $this->apiService->getUrl($url);
         $product = $response->response;
+        $socials = $this->interNetwork->get();
         if ($response->result->success == true) {
-
-            return view('details.detail-1', compact('product'));
+            return view('details.detail-1', compact('socials', 'product'));
         }
 
     }

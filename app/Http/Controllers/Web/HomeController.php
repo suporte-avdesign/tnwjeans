@@ -44,7 +44,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $products = $this->getProducts();
         $socials = $this->interSocial->get();
         $configSite = $this->configSite->setId(1);
