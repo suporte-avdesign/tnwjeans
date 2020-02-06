@@ -54,7 +54,6 @@
                 social_network_id: id
             };
             postShare(data);
-
         }, "jsonp");
     };
 
@@ -64,25 +63,20 @@
      */
     postShare = function(data) {
         $.ajax({
-            url: 'ajax/social/share',
+            url: '/ajax/social/share',
             type: 'POST',
             dataType: 'Json',
             data: data,
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-
             success: function (data) {
                 if (data.redirect) {
-
                     window.open(data.redirect);
-
                     /*
                     window.open('https://www.facebook.com/sharer/sharer.php?u='+
                         encodeURIComponent(data.redirect),
                         'facebook-share-dialog','width=626,height=400');
                     */
                 }
-
-
             }
         });
     }

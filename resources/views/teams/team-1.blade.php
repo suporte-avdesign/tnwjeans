@@ -1,7 +1,7 @@
 <section id="team" class="team">
     <div class="container">
         <div class="text-center top-text">
-            <h1><span>Lookbook</span> Outono <span class="hot">2020</span></h1>
+            <h1>Coleção  <span class="hot">Outono</span></h1>
             <h4>Compre Online</h4>
         </div>
         <div class="divider text-center">

@@ -5,7 +5,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{{$product->name}}</title>
     <meta name="description" content="{{$product->description}} - {{$product->composition}}">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">.
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta property="og:url" content="{{route('social-detail', $product->id)}}" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="{{$product->name}}" />
@@ -13,6 +15,7 @@
 @foreach($product->images as $image)
 @if($loop->index == 0)
     <meta property="og:image" content="{{$image->url.$image->sizes->orig->path}}" />
+    @php $content_height = $image->sizes->orig->height+20; @endphp
 @endif
 @endforeach
 
@@ -65,7 +68,6 @@
                                 </div>
                                 <div class="lightboximages">
                                     @foreach($product->images as $image)
-                                        @php $content_height = $image->sizes->orig->height+20; @endphp
                                         <a href="{{$image->url.$image->sizes->orig->path}}" data-size="{{$image->sizes->orig->width}}x{{$image->sizes->orig->height}}"></a>
                                     @endforeach
                                 </div>
@@ -83,6 +85,7 @@
                                 </ul>
                             </div>
                             <form method="post" id="product_form_10508262282" accept-charset="UTF-8" class="product-form product-form-product-template hidedropdown" enctype="multipart/form-data">
+                                <!--
                                 <div class="swatch clearfix swatch-0 option1" data-option-index="0">
                                     <div class="product-form__item">
                                         <label class="header">Fotos: <span class="slVariant">Modelo</span></label>
@@ -94,6 +97,7 @@
                                         @endforeach
                                     </div>
                                 </div>
+                                -->
                                 <div class="swatch clearfix swatch-1 option2" data-option-index="1">
                                     <div class="product-form__item">
                                         <label class="header"> <span class="slVariant">Grade:</span></label>
@@ -112,12 +116,11 @@
                             <div id="quantity_message">COMPARTILHE COM SEU CLIENTE.</div>
 
                             <div class="display-table shareRow">
-
                                 <div class="display-table-cell text-left">
                                     <div class="social-sharing">
                                         @foreach($socials as $social)
                                             @if($social->name == 'facebook' && $social->active == 1)
-                                                <a target="_blank" href="#" class="btn btn--small btn--secondary btn--share share-facebook" title="Facebook">
+                                                <a href="javascript:void(0)" onclick="socialShare(3, '{{$product->id}}');" class="btn btn--small btn--secondary btn--share share-facebook" title="Facebook">
                                                     <i class="fa fa-facebook-square" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Facebook</span>
                                                 </a>
                                             @endif
@@ -154,7 +157,6 @@
         <!--MainContent-->
     </div>
 
-    <span id="site-scroll"><i class="icon anm anm-angle-up-r"></i></span>
 
     <!-- Including Jquery -->
     <script src="{{asset('details/js/jquery-3.3.1.min.js')}}"></script>
@@ -167,10 +169,11 @@
     <script src="{{asset('details/js/popper.min.js')}}"></script>
     <script src="{{asset('details/js/lazysizes.js')}}"></script>
     <script src="{{asset('details/js/main.js')}}"></script>
-
+    <script src="{{asset('js/social.js')}}"></script>
     <!-- Photoswipe Gallery -->
     <script src="{{asset('details/js/photoswipe.min.js')}}"></script>
     <script src="{{asset('details/js/photoswipe-ui-default.min.js')}}"></script>
+
     <script>
         $(function(){
             var $pswp = $('.pswp')[0],
@@ -212,42 +215,43 @@
             });
         });
     </script>
-</div>
-
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="pswp__bg"></div>
-    <div class="pswp__scroll-wrap">
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Fechar (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Compartilhar"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="pswp__bg"></div>
+        <div class="pswp__scroll-wrap">
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+            <div class="pswp__ui pswp__ui--hidden">
+                <div class="pswp__top-bar">
+                    <div class="pswp__counter"></div>
+                    <button class="pswp__button pswp__button--close" title="Fechar (Esc)"></button>
+                    <button class="pswp__button pswp__button--share" title="Compartilhar"></button>
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Anterior (arrow left)"></button>
-            <button class="pswp__button pswp__button--arrow--right" title="Proximo (arrow right)"></button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+                <button class="pswp__button pswp__button--arrow--left" title="Anterior (arrow left)"></button>
+                <button class="pswp__button pswp__button--arrow--right" title="Proximo (arrow right)"></button>
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
             </div>
         </div>
     </div>
+
 </div>
+
 
 </body>
 </html>

@@ -968,6 +968,18 @@ table { margin-bottom:15px; width:100%; border-collapse:collapse; border-spacing
 .product-single .grid_item-title { font-size:26px; margin-bottom:25px; }
 .product-single .product-single__title { font-size:18px; }
 
+.product-single .social-sharing i{
+    font-size:24px;
+}
+
+.product-single .social-sharing .share-facebook i{
+    color: midnightblue;
+}
+
+.product-single .social-sharing .share-whatsapp i{
+    color: darkgreen;
+}
+
 /*======================================================================
   22. Categories List
 ========================================================================*/
