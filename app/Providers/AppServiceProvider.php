@@ -18,7 +18,10 @@ class AppServiceProvider extends ServiceProvider
         }
 
         $models = array(
+            'Whatsapp',
+            'Shopping',
             'ConfigSite',
+            'SocialShare',
             'SocialFollow',
             'SocialNetwork'
         );

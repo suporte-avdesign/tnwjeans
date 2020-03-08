@@ -9,9 +9,10 @@
     <!-- Preloader Starts -->
     <div class="preloader" id="preloader">
         <div class="logopreloader">
-            <img src="img/styleswitcher/logos/logos-dark/orange.png" alt="logo-black">
+            <img src="img/logo-tnwjeans.png" alt="logo-black">
         </div>
-        <div class="loader" id="loader"></div>
+
+        <div class="loader5" id="loader"></div>
     </div>
     <!-- Configuração: style -->
     @include('configuration.style-1')
@@ -21,7 +22,11 @@
         @include('headers.header-1')
         <!-- Slider -->
         <section class="mainslider" id="mainslider">
-            @include('home.mainslider.'.$configSite->mainslider)
+            @if($isMobile)
+                @include('home.mainslider.mobile.'.$configSite->mainslider)
+            @else
+                @include('home.mainslider.desktop.'.$configSite->mainslider)
+            @endif
         </section>
 
         <!-- About Section -->
@@ -29,30 +34,26 @@
         <!-- Project Section
         include('projects.project-1')
         -->
-        <!-- Testimonials Section -->
-        @include('testimonials.testimonial-1')
-        <!-- Portfolio Section -->
         @include('portfolios.portfolio-1')
-        <!-- Facts Section -->
-        @include('facts.fact-1')
-        <!-- Team Section -->
-        @include('teams.team-1')
-        <!-- Newsletter Section -->
-        @include('newsletters.newsletter-1')
-        <!-- Blog Section
+        <!--
+        include('facts.fact-1')
+
+        include('newsletters.newsletter-1')
         include('blogs.blog-1')
         -->
-        <!-- Video Section -->
-        @include('videos.video-1')
-        <!-- Contact Section -->
+        <!-- Video
+        include('videos.video-1')
+        -->
+        @include('teams.team-1')
         @include('contacts.contact-1')
+        <!--
+        include('testimonials.testimonial-1')
 
-        <!-- Services Section -->
-        @include('services.service-1')
 
-    <!-- Logos Brands
         include('brands.brand-1')
         -->
+        @include('services.service-1')
+
         <!-- Footer Section -->
         @include('footers.footer-1')
         <!-- Back To Top Starts -->
@@ -63,3 +64,20 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-158115541-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        //gtag('config', 'UA-110066156-1');
+        gtag('set', {'content_group1': 'Atacado de Jeans'});
+        gtag('config', 'UA-158115541-1', {
+            'custom_map': {'dimension1': 'tipo_de_conteudo','dimension2': 'categoria_conteudo'},
+            'tipo_de_conteudo' : 'Home Site',
+            'categoria_conteudo' : 'Atacado de Jeans'			});
+
+    </script>
+ @endpush

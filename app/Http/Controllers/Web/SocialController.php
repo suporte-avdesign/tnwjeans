@@ -3,20 +3,31 @@
 namespace App\Http\Controllers\Web;
 
 use Illuminate\Http\Request;
+use App\Services\UserAgent;
 use App\Services\ApiService;
 use App\Http\Controllers\Controller;
+use App\Interfaces\SocialShareInterface as InterShare;
 use App\Interfaces\SocialFollowInterface as InterFollow;
 use App\Interfaces\SocialNetworkInterface as InterSocial;
 
 class SocialController extends Controller
 {
+    private $userAgent;
     private $apiService;
+    private $interShare;
     private $interFollow;
     private $interNetwork;
 
-    public function __construct(ApiService $apiService, InterFollow $interFollow, InterSocial $interNetwork)
+    public function __construct(
+        UserAgent $userAgent,
+        ApiService $apiService,
+        InterShare $interShare,
+        InterFollow $interFollow,
+        InterSocial $interNetwork)
     {
+        $this->userAgent = $userAgent;
         $this->apiService = $apiService;
+        $this->interShare = $interShare;
         $this->interFollow = $interFollow;
         $this->interNetwork = $interNetwork;
     }
@@ -44,9 +55,11 @@ class SocialController extends Controller
     public function share(Request $request)
     {
         $input = $request->all();
-        $redirect = route('social-detail', ['id' => $input['id']]);
+        $input['product_id'] = $input['id'];
+        $register = $this->interShare->create($input);
+        $network = $this->interNetwork->setId($input['social_network_id']);
+        $redirect = route('social-detail', ['network' => $network->name, 'id' => $input['id']]);
         return response()->json(['redirect' => $redirect]);
-        //return response()->json(['redirect' => 'https://appwebcatalogo.vesti.mobi/catalogo/tnw/98613bcf-3bf3-40ae-a6ec-493cee27651b']);
     }
 
     /**
@@ -55,60 +68,25 @@ class SocialController extends Controller
      * @param  $slug
      * @return \Illuminate\Http\Response
      */
-    public function detail($id)
+    public function detail(Request $request, $network, $id)
     {
-        $url = "https://api.meuvesti.com/api/appcompras/products/{$id}?scheme_url=tnw&v=1.1";
+        $url = "{$this->apiService->urlDetail()}/{$id}?{$this->apiService->parameters()}";
         $response = $this->apiService->getUrl($url);
         $product = $response->response;
+        $isMobile = $this->userAgent->isMobile();
         $socials = $this->interNetwork->get();
         if ($response->result->success == true) {
-            return view('details.detail-1', compact('socials', 'product'));
+            // Verifica se foi compartilhado
+            $share = $request->get('share');
+            return view('details.detail-1', compact(
+                'share',
+                    'network',
+                    'socials',
+                    'product',
+                    'isMobile')
+            );
         }
-
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Social  $social
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Social $social)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Social  $social
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Social $social)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Social  $social
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Social $social)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Social  $social
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Social $social)
-    {
-        //
-    }
 }

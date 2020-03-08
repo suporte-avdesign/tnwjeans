@@ -1,7 +1,7 @@
-<section id="team" class="team">
+<section id="lookbook" class="team">
     <div class="container">
         <div class="text-center top-text">
-            <h1>Coleção  <span class="hot">Outono</span></h1>
+            <h1>Look<span class="hot">Book</span></h1>
             <h4>Compre Online</h4>
         </div>
         <div class="divider text-center">
@@ -24,14 +24,14 @@
                             <h4>{{$product->name}}</h4>
                             <p>Grade: <strong>{{str_replace(',', '/', $product->size_group_name)}}</strong></p>
                             <ul class="list list-inline social" style="display: block">
-                                <li>
-                                    <a href="javascript:void(0);" onclick="socialShare(3, '{{$product->id}}');" title="Compartilhar" class="fa fa-facebook"></a>
+                                <li id="facebook-{{$product->id}}">
+                                    <a href="javascript:void(0);" onclick="socialShare(3, '{{$product->id}}', 'facebook-{{$product->id}}');" title="Compartilhar" class="fa fa-facebook"></a>
                                 </li>
-                                <li>
-                                    <a href="#" title="COMPRAR" class="fa fa-cart-plus"></a>
+                                <li id="shopping-{{$product->id}}">
+                                    <a href="javascript:void(0);" onclick="goShopping(9, '{{$product->id}}', 'shopping-{{$product->id}}');" title="COMPRAR" class="fa fa-cart-plus"></a>
                                 </li>
-                                <li>
-                                    <a href="#" title="Whatsapp" class="fa fa-whatsapp"></a>
+                                <li id="whatsapp-{{$product->id}}">
+                                    <a href="javascript:void(0);" id="whatsapp-{{$product->id}}" onclick="shareWhatsapp(1, '{{$product->id}}', 'whatsapp-{{$product->id}}');" title="WhatsApp" class="fa fa-whatsapp"></a>
                                 </li>
                             </ul>
                         </div>

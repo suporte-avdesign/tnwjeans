@@ -1,16 +1,20 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: avdesign
+ * Created by AV Design.
+ * User: Anselmo Velame
  * Date: 03/02/20
  * Time: 11:06
  */
 
 namespace App\Services;
 
+use App\Services\Traits\ApiTrait;
+
 
 class ApiService
 {
+    use ApiTrait;
+
     public function getUrl($url)
     {
         $curl = curl_init();

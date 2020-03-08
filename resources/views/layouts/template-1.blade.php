@@ -207,6 +207,12 @@
     })(jQuery);
 </script>
 <!-- Revolution Slider Initialization Ends -->
+<script type='text/javascript'>
+    var _urlInfoLocation = {!! json_encode([
+        "url" => '',
+        "token" => ''
+    ]) !!};
+</script>
 
 @stack('scripts')
 </body>

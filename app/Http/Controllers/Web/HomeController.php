@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Web;
 
 use App\Models\Home;
+use App\Services\UserAgent;
 use App\Services\ApiService;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -15,6 +16,7 @@ class HomeController extends Controller
     private $view = 'home';
     private $home;
     private $content;
+    private $userAgent;
     private $configSite;
     private $interSocial;
     private $apiService;
@@ -23,6 +25,7 @@ class HomeController extends Controller
      */
 
     public function __construct(
+        UserAgent $userAgent,
         ConfigSite $configSite,
         ApiService $apiService,
         InterSocial $interSocial)
@@ -32,6 +35,7 @@ class HomeController extends Controller
             'copyright' => 'Copyright©2008-'.date('Y').', TNW JEANS. todos os direitos reservados. Projetado por',
         );
 
+        $this->userAgent = $userAgent;
         $this->configSite = $configSite;
         $this->apiService = $apiService;
         $this->interSocial = $interSocial;
@@ -44,11 +48,13 @@ class HomeController extends Controller
      */
     public function index()
     {
+
         $products = $this->getProducts();
         $socials = $this->interSocial->get();
         $configSite = $this->configSite->setId(1);
+        $isMobile = $this->userAgent->isMobile();
         $content = typeJson($this->content);
-        return view("{$this->view}.home-1", compact('configSite', 'socials', 'content', 'products'));
+        return view("{$this->view}.home-1", compact('configSite', 'isMobile', 'socials', 'content', 'products'));
     }
 
     /**

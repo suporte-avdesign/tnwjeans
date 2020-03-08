@@ -1,24 +1,15 @@
-
-
-<section id="contact2" class="contact">
-    <!-- Container Starts -->
+<section id="lacalizacao" class="contact">
     <div class="container">
-        <!-- Main Heading Starts -->
         <div class="text-center top-text">
-            <h1><span>Contact</span> Us</h1>
-            <h4>Get in Touch</h4>
+            <h1><span>Mapa</span> Localização</h1>
+            <h4>Rua Xavantes, 596 - Brás - São Paulo</h4>
         </div>
-        <!-- Main Heading Starts -->
-        <!-- Divider Starts -->
         <div class="divider text-center">
             <span class="outer-line"></span>
-            <span class="fa fa-envelope" aria-hidden="true"></span>
+            <span class="fa fa-map-marker" aria-hidden="true"></span>
             <span class="outer-line"></span>
         </div>
-        <!-- Divider Ends -->
     </div>
-    <!-- Container Ends -->
-    <!-- Map Section Starts -->
     <div class="info-map">
         <div class="google-map">
             <div class="gmap_container">
@@ -26,7 +17,6 @@
             </div>
         </div>
     </div>
-    <!-- Info Map -->
     <div class="container">
         <div class="row info-map-boxes">
             <div class="col-md-6 col-sm-12">
@@ -41,7 +31,13 @@
                 <div class="info-map-boxes-item fa fa-phone">
                     <h1>CONTATO ONLINE</h1>
                     <p> 11 99995-5939
-                        <br><a href="#">contato@tnwjeans.com.br</a>
+                        <br>
+                        <a href="#" class="cryptedmail"
+                           data-name="contato"
+                           data-domain="tnwjeans"
+                           data-tld="com.br"
+                           onclick="window.location.href = 'mailto:' + this.dataset.name + '@' + this.dataset.domain + '.' + this.dataset.tld; return false;">
+                        </a>
                     </p>
                 </div>
             </div>
@@ -49,7 +45,7 @@
     </div>
 </section>
 
-<section id="contact" class="contactform">
+<section id="contato" class="contactform">
     <div class="section-overlay">
         <div class="container">
             <div class="text-center top-text">

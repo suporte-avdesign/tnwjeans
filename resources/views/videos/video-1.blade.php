@@ -1,4 +1,4 @@
-<section class="videopromotion">
+<section id="video" class="videopromotion">
     <div class="section-overlay">
         <div class="container">
             <div class="text-center top-text">

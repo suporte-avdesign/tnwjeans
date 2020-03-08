@@ -1,33 +1,59 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html class="no-js" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <title>Your Website Title</title>
-    <!-- You can use Open Graph tags to customize link previews.
-    Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
-    <meta property="og:url"           content="http://www.tnwjeans.com.br/debora-seco-2017" />
-    <meta property="og:type"          content="website" />
-    <meta property="og:title"         content="Titulo da foto" />
-    <meta property="og:description"   content="Descrição da Foto" />
-    <meta property="og:image"         content="http://www.tnwjeans.com.br/debora-seco-2017/imagens/lookbook/270x345/shorts-jeans5-1.jpg" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{{$product->name}}</title>
+    <meta name="description" content="{{$product->description}} - {{$product->composition}}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">.
+    <meta name="robots" content="index,follow">
+    <meta property="og:url" content="{{route('social-detail', ['network' => $network,'id' => $product->id])}}?share=true"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{$product->name}}"/>
+    <meta property="og:description" content="{{$product->description}} - {{$product->composition}}"/>
+@foreach($product->images as $image)
+@if($loop->index == 0)
+@php
+    $image_large  = $image->url.$image->sizes->large->path;
+    $width_large  = $image->sizes->large->width;
+    $height_large = $image->sizes->large->height;
+    $image_small  = $image->url.$image->sizes->small->path;
+    $width_small  = $image->sizes->small->width;
+    $height_small = $image->sizes->small->height;
+@endphp
+    <meta property="og:image" content="{{$image_small}}"/>
+    <meta property="og:image:secure_url" content="{{$image_small}}"/>
+    <meta property="og:image:width" content="{{$width_small}}"/>
+    <meta property="og:image:height" content="{{$height_small}}"/>
+@endif
+@endforeach
 </head>
 <body>
+<figure>
+    <img class="" src="{{$image_small}}"
+    sizes="(max-width: 1024px) 100vw, {{$width_small}}px"
+    srcset="{{$image_small}} {{$width_small}}w"
+    data-srcset="{{$image_small}} {{$width_small}}w"
+    alt="{{$product->description}} - {{$product->composition}}">
+</figure>
 
 
-<!-- Load Facebook SDK for JavaScript -->
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+@if($network == 'facebook')
+    <a id="btn-share" href="https://www.facebook.com/sharer/sharer.php?u={{route('social-detail', ['network' => $network, 'id' => $product->id])}}?share=true"></a>
 
-<!-- Your share button code -->
-<div class="fb-share-button"
-     data-href="http://www.tnwjeans.com.br/debora-seco-2017"
-     data-layout="button_count">
-</div>
+@endif
+@if($network == 'whatsapp')
+    @if($isMobile)
+        <a id="btn-share" href="whatsapp://send?text={{route('social-detail', ['network' => $network, 'id' => $product->id])}}?share=true"></a>
+    @else
+        <a id="btn-share" href="https://web.whatsapp.com/send?text={{route('social-detail', ['network' => $network, 'id' => $product->id])}}?share=true"></a>
+    @endif
+@endif
+<script>
+    setTimeout(function(){
+        document.getElementById("btn-share").click();
+    }, 1000);
+</script>
 
 </body>
 </html>

@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html class="no-js" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>{{$product->name}}</title>
     <meta name="description" content="{{$product->description}} - {{$product->composition}}">
     <meta name="viewport" content="width=device-width, initial-scale=1">.
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <meta property="og:url" content="{{route('social-detail', $product->id)}}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{$product->name}}" />
-    <meta property="og:description" content="{{$product->description}} - {{$product->composition}}" />
+    <meta name="robots" content="index,follow">
+    <meta property="og:url" content="{{route('social-detail', ['network' => $network,'id' => $product->id])}}?share=true"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:title" content="{{$product->name}}"/>
+    <meta property="og:description" content="{{$product->description}} - {{$product->composition}}"/>
 @foreach($product->images as $image)
 @if($loop->index == 0)
-    <meta property="og:image" content="{{$image->url.$image->sizes->orig->path}}" />
-    @php $content_height = $image->sizes->orig->height+20; @endphp
+    @php
+        $height = $image->sizes->large->height;
+        $image_small  = $image->url.$image->sizes->small->path;
+        $width_small  = $image->sizes->small->width;
+        $height_small = $image->sizes->small->height;
+    @endphp
+    <meta property="og:image" content="{{$image_small}}"/>
+    <meta property="og:image:secure_url" content="{{$image_small}}"/>
+    <meta property="og:image:width" content="{{$width_small}}"/>
+    <meta property="og:image:height" content="{{$height_small}}"/>
 @endif
 @endforeach
-
-    <!-- Favicon -->
+<!-- Favicon -->
+@if($share)
     <link rel="shortcut icon" href="{{asset('img/favicon.png')}}" />
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="{{asset('details/css/plugins.css')}}">
@@ -28,8 +36,10 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{asset('details/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('details/css/responsive.css')}}">
+@endif
 </head>
 <body class="template-product belle">
+@if($share)
 <div class="pageWrapper">
     <!--Body Content-->
     <div id="page-content">
@@ -74,7 +84,7 @@
 
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 col-12" style="height: {{$content_height}}px">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-12" style="height: {{$height+10}}px">
                             <div class="product-single__meta">
                                 <h1 class="product-single__title">{{$product->name}}</h1>
                             </div>
@@ -85,12 +95,12 @@
                                 </ul>
                             </div>
                             <form method="post" id="product_form_10508262282" accept-charset="UTF-8" class="product-form product-form-product-template hidedropdown" enctype="multipart/form-data">
-                                <!--
+                            <!--
                                 <div class="swatch clearfix swatch-0 option1" data-option-index="0">
                                     <div class="product-form__item">
                                         <label class="header">Fotos: <span class="slVariant">Modelo</span></label>
                                         @foreach($product->images as $image)
-                                            <div data-value="pos_{{$loop->index+1}}" class="swatch-element color pos_{{$loop->index+1}} available">
+                                <div data-value="pos_{{$loop->index+1}}" class="swatch-element color pos_{{$loop->index+1}} available">
                                                 <input class="swatchInput" id="swatch-0-pos_{{$loop->index+1}}" type="radio" name="option-0" value="pos_{{$loop->index+1}}">
                                                 <label class="swatchLbl color medium rectangle" for="swatch-0-pos_{{$loop->index+1}}" style="background-image:url({{$image->url.$image->sizes->small->path}});" title="{{$product->name}} {{$loop->index+1}}"></label>
                                             </div>
@@ -120,6 +130,7 @@
                                     <div class="social-sharing">
                                         @foreach($socials as $social)
                                             @if($social->name == 'facebook' && $social->active == 1)
+
                                                 <a href="javascript:void(0)" onclick="socialShare(3, '{{$product->id}}');" class="btn btn--small btn--secondary btn--share share-facebook" title="Facebook">
                                                     <i class="fa fa-facebook-square" aria-hidden="true"></i> <span class="share-title" aria-hidden="true">Facebook</span>
                                                 </a>
@@ -156,7 +167,6 @@
         </div>
         <!--MainContent-->
     </div>
-
 
     <!-- Including Jquery -->
     <script src="{{asset('details/js/jquery-3.3.1.min.js')}}"></script>
@@ -215,6 +225,7 @@
             });
         });
     </script>
+
     <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="pswp__bg"></div>
         <div class="pswp__scroll-wrap">
@@ -252,6 +263,21 @@
 
 </div>
 
+@else
+    @if($network == 'facebook')
+        <a id="btn-share" href="https://www.facebook.com/sharer/sharer.php?u={{route('social-detail', ['network' => $network, 'id' => $product->id])}}?share=true"></a>
+    @endif
+    @if($network == 'whatsapp')
+        @if($isMobile)
+            <a id="btn-share" href="whatsapp://send?text={{route('social-detail', ['network' => $network, 'id' => $product->id])}}?share=true"></a>
+        @else
+            <a id="btn-share" href="https://web.whatsapp.com/send?text={{route('social-detail', ['network' => $network, 'id' => $product->id])}}?share=true"></a>
+        @endif
+    @endif
+    <script>
+        document.getElementById("btn-share").click();
+    </script>
+@endif
 
 </body>
 </html>

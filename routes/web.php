@@ -2,22 +2,31 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Route Home
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
 Route::get('/', 'Web\HomeController@index')->name('home');
-
 /*
 |--------------------------------------------------------------------------
 | Redes Sociais
 |--------------------------------------------------------------------------
 */
-Route::post('ajax/social/follow', 'Web\SocialController@follow')->name('social-follow');
-Route::post('ajax/social/share', 'Web\SocialController@share')->name('social-share');
-Route::get('social/share/{id}', 'Web\SocialController@detail')->name('social-detail');
+Route::post('ajax/social/follow', 'Web\SocialController@follow');
+Route::post('ajax/social/share', 'Web\SocialController@share');
+Route::get('social/share/{network}/{id}', 'Web\SocialController@detail')->name('social-detail');
+/*
+|--------------------------------------------------------------------------
+| Share Whatsapp
+|--------------------------------------------------------------------------
+*/
+Route::post('ajax/share/whatsapp', 'Web\WhatsappController@share');
+/*
+|--------------------------------------------------------------------------
+| Redirect Shopping
+|--------------------------------------------------------------------------
+*/
+Route::post('ajax/redirect/shopping', 'Web\ShoppingController@redirect');
+
+
+

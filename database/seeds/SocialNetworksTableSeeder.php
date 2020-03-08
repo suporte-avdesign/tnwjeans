@@ -15,7 +15,7 @@ class SocialNetworksTableSeeder extends Seeder
     {
         SocialNetwork::create([
             'name' => 'whatsapp',
-            'link' => '',
+            'link' => 'https://web.whatsapp.com/send?text=|whatsapp://send?text=',
             'active' => 1
         ]);
         SocialNetwork::create([
@@ -44,6 +44,11 @@ class SocialNetworksTableSeeder extends Seeder
         ]);
         SocialNetwork::create([
             'name' => 'linkedin'
+        ]);
+        SocialNetwork::create([
+            'name' => 'vesti',
+            'link' => 'https://appwebcatalogo.vesti.mobi/catalogo/tnw/',
+            'active' => 1
         ]);
     }
 }

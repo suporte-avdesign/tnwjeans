@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "tnwjeans"]
+	url = ssh://root@159.65.241.145:2222/repo/tnwjeans.git
+	fetch = +refs/heads/*:refs/remotes/tnwjeans/*

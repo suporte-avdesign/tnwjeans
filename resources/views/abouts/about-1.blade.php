@@ -10,7 +10,7 @@
         <!-- Divider Starts -->
         <div class="divider text-center">
             <span class="outer-line"></span>
-            <span class="fa fa-user" aria-hidden="true"></span>
+            <span class="fa fa-history" aria-hidden="true"></span>
             <span class="outer-line"></span>
         </div>
         <!-- Divider Ends -->
